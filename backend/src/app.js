@@ -8,7 +8,7 @@ const app = express();
 
 app.use(
     cors({
-        origin: ['http://localhost:5173', 'https://e-commerce-woad-rho.vercel.app'] || "*", //urls to give access
+        origin: ['https://e-commerce-bkd2.onrender.com','http://localhost:5173'], //urls to give access
         credentials: true,
     })
 );
