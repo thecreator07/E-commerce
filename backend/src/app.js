@@ -19,10 +19,10 @@ console.log(__dirname)
 app.use(express.json({ limit: "20kb" }));
 app.use(express.urlencoded({ extended: true, limit: "20kb" }));
 app.use(express.static("public"));
-app.use(express.static(path.join(__dirname, "../dist")))
-app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "../dist/index.html"))
-})
+// app.use(express.static(path.join(__dirname, "../dist")))
+// app.get("*", (req, res) => {
+//     res.sendFile(path.resolve(__dirname, "../dist/index.html"))
+// })
 
 app.use(cookieParser());
 //Router import

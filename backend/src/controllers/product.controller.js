@@ -144,6 +144,10 @@ const GetAllProduct = asyncHandler(async (req, res) => {
                     },
                 },
             });
+        } else {
+            pipeline.push({
+                $match: {}
+            })
         }
 
         // Filter by category
@@ -207,7 +211,7 @@ const GetPruductDetail = asyncHandler(async (req, res) => {
 
         const product = await Product.findById(productId)
 
-        return res.status(201).json(new ApiResponse(200, {product }, "Product retrieve Succesfully "))
+        return res.status(201).json(new ApiResponse(200, { product }, "Product retrieve Succesfully "))
     } catch (error) {
         console.log("GetPruductDetail Error", error)
         throw new ApiError(401, "Something went wrong during GetPruductDetail")

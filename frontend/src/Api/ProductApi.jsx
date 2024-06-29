@@ -70,7 +70,7 @@ export const fetchGetAllProduct = async (query) => {
       url += `?query=${query}`;
     }
 
-    const response = axios.get(
+    const { data } = await axios.get(
       url,
       // {data},
       {
@@ -79,10 +79,11 @@ export const fetchGetAllProduct = async (query) => {
         },
       }
     );
-    const data = (await response).data;
-    const result = data.data;
-    const product = result.productData;
-    return product;
+    // const data = (await response).data;
+
+    // const product = data?.productData;
+    // console.log(data.data);
+    return data.data;
   } catch (error) {
     console.error("Error fetching data:", error);
     throw error;

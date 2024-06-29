@@ -20,12 +20,13 @@ function Navbar() {
   const handleSearch = async () => {
     try {
       const data = await fetchGetAllProduct(query);
-      // console.log(data);
-      dispatch(setsearchData({ product: data }));
+      console.log(data.productData);
+      dispatch(setsearchData({ product: data?.productData }));
       setquery("");
     } catch (error) {
       // Handle error (show error message, etc.)
       console.error("Error fetching products:", error);
+      setquery('')
     }
   };
 
@@ -60,7 +61,7 @@ function Navbar() {
           navigate("/product");
         }}
       >
-       {user?.role==="admin"?"Admin":"Ecommerce"} 
+        {user?.role === "admin" ? "Admin" : "Ecommerce"}
       </h1>
 
       <div className="relative">

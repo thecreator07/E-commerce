@@ -35,7 +35,7 @@ const ProductCard = ({ title, description, price, image, id }) => {
   };
 
   return (
-    <div>
+    <div >
       <div className=" w-[250px] h-[300px] p-2 bg-[#f5f5f5] cardshadow rounded-lg">
         {/* here will give <Link to={"product/"+id} */}
         <div className="h-[60%] w-full rounded-lg overflow-hidden relative">
