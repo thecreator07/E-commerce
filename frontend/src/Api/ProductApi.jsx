@@ -63,29 +63,50 @@ export const fetchDeleteProduct = async (productId) => {
   }
 };
 
-export const fetchGetAllProduct = async (query) => {
+// export const fetchGetAllProduct = async (query) => {
+//   try {
+//     let url = `${API_URI}/api/v1/products`;
+// if (query) {
+//   url += `?query=${query}`;
+// }
+
+//     const { data } = await axios.get(
+//       url,
+//       // {data},
+//       {
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//         credentials: "include",
+//         withCredentials: true,
+//       }
+//     );
+//     // const data = (await response).data;
+
+//     // const product = data?.productData;
+//     console.log(data);
+//     return data.data;
+//   } catch (error) {
+//     console.error("Error fetching data:", error);
+//     throw error;
+//   }
+// };
+
+export const fetchGetAllProduct = async ({query}) => {
   try {
     let url = `${API_URI}/api/v1/products`;
-    if (query) {
-      url += `?query=${query}`;
-    }
+    if (query) url += `?query=${query}`;
 
-    const { data } = await axios.get(
-      url,
-      // {data},
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    // const data = (await response).data;
-
-    // const product = data?.productData;
-    // console.log(data.data);
-    return data.data;
+    console.log(url);
+    const response = await axios.get(url, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    });
+    return await response.data; // Assuming your API returns { statusCode, data, message }
   } catch (error) {
-    console.error("Error fetching data:", error);
-    throw error;
+    console.error("Error fetching products:", error);
+    throw error; // Handle errors as per your application's needs
   }
 };

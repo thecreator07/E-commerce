@@ -169,11 +169,6 @@ const GetAllProduct = asyncHandler(async (req, res) => {
         }
 
         // Sort by price in ascending order
-        pipeline.push({
-            $sort: {
-                price: 1,
-            },
-        });
 
         // Projecting fields to include in the result
         pipeline.push({
@@ -186,6 +181,11 @@ const GetAllProduct = asyncHandler(async (req, res) => {
                 category: 1,
                 stock: 1,
                 createdAt: 1,
+            },
+        });
+        pipeline.push({
+            $sort: {
+                price: -1,
             },
         });
 

@@ -6,20 +6,36 @@ import CartPage from "../../components/Cart/CartPage";
 import ProductDetails from "../../components/product/ProductDetails";
 import AddProductPage from "../../components/Admin/AddProductPage";
 import UpdateProduct from "../../components/Admin/UpdateProduct";
+import { fetchGetAllProduct } from "../../Api/ProductApi";
+import { setsearchData } from "../../Redux/userSlice";
+import { useDispatch } from "react-redux";
 
 function HomePage() {
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   // console.log(location.pathname);
   useEffect(() => {
-    if (location.pathname === "/") {
-      navigate("/product");
-    }
+  //   if (location.pathname === "/") {
+  //     navigate("/product");
+  //   }
+
+    // (async () => {
+    //   try {
+    //     const data = await fetchGetAllProduct();
+    //     console.log(data.productData);
+    //     dispatch(setsearchData({ product: data?.productData }));
+    //   } catch (error) {
+    //     // Handle error (show error message, etc.)
+    //     console.error("Error fetching products:", error);
+    //     // setquery("");
+    //   }
+    // })();
   }, []);
 
   return (
-    <div className="min-w-screen h-screen">
-      <div className="w-full h-full">
+    <div className="min-w-screen mt-16">
+      <div className="w-full h-full flex flex-col  items-center">
         <Navbar />
         <Routes>
           <Route path="/product" element={<ProductPage />} />

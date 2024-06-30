@@ -50,17 +50,14 @@ const CartItem = ({ id, title, description, image, quantity, price }) => {
       if (!data) {
         throw new Error("Something went wrong during cart item removal ");
       }
-      navigate("/cart");
-      return data.data;
+      return;
     } catch (error) {
       console.error("Error fetching data:", error);
       throw error;
+    } finally {
+      navigate("/cart");
     }
   };
-
-  useEffect(() => {
-    handleCartRemove();
-  }, []);
 
   return (
     <div>

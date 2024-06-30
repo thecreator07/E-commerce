@@ -45,7 +45,6 @@ const UpdateProduct = () => {
 
       console.log("Productupdated successfully:", response.data);
 
-      navigate("/product");
       // Handle success (show message, redirect, etc.)
     } catch (error) {
       console.error("Add Product Error:", error);
@@ -53,6 +52,7 @@ const UpdateProduct = () => {
       // Handle error (show error message, reset form, etc.)
     } finally {
       setLoading(false);
+      navigate("/product");
     }
   };
 
@@ -105,7 +105,7 @@ const UpdateProduct = () => {
           value={category}
           onChange={(e) => setCategory(e.target.value)}
           placeholder="Category"
-        //   required
+          //   required
         />
         <input
           className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5"

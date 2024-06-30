@@ -30,14 +30,14 @@ const CartPage = () => {
 
   useEffect(() => {
     handleCart();
-  }, []);
+  }, [Cart]);
   // console.log("Cart", Cart);
   // console.log("totalItems", totalItems);
 
   return (
     <div className="mt-4 mx-20 flex gap-5 flex-wrap">
       {Cart &&
-        Cart?.map((item) => (
+        Cart.map((item) => (
           <CartItem
             key={item.product._id}
             id={item.product._id}
@@ -48,6 +48,8 @@ const CartPage = () => {
             price={item.price}
           />
         ))}
+
+        <footer className="w-full bg-slate-200 fixed bottom-0 h-10"></footer>
     </div>
   );
 };

@@ -23,15 +23,8 @@ function RegisterPage() {
     formData.append("fullName", value.fullname);
     formData.append("email", value.email);
     formData.append("password", value.password);
-    // formData.append("phone", phone);
     formData.append("role", value.role);
-    // formData.append("dob", dob);
-    // formData.append("gender", gender);
-    // formData.append("address", address);
-    // if (avatar) {
-    //   formData.append("avatar", avatar);
-    // }
-
+    
     try {
       setloading(true);
       const response = await fetch(`${API_URI}/api/v1/users/register`, {
@@ -49,7 +42,6 @@ function RegisterPage() {
       setloading(false);
       navigate("/login");
 
-      // Optionally reset form fields or redirect to another page
     } catch (error) {
       console.error("Registration Error:", error.message);
       setMessage("Failed to register user. Please try again.");
@@ -59,7 +51,7 @@ function RegisterPage() {
   console.log(message);
   return (
     <form onSubmit={handleSubmit}>
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
+      <div className="flex flex-col items-center justify-center px-2 md:px-6 py-8 mx-auto">
         <div className="w-full bg-white rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <p className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
@@ -125,14 +117,14 @@ function RegisterPage() {
                     setcheck(!check);
                     setvalue({ ...value, role: !check ? "admin" : "user" });
                   }}
-                  className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 bg-gray-700 border-gray-600 focus:ring-primary-600 ring-offset-gray-800"
+                  className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300  focus:ring-primary-600 ring-offset-gray-800"
                   type="checkbox"
                   aria-describedby="terms"
                   id="terms"
                 />
               </div>
               <div className="ml-3 text-sm">
-                <label className="font-light text-gray-500 text-gray-300">
+                <label className="font-light text-gray-500 ">
                   Register as Admin
                 </label>
               </div>

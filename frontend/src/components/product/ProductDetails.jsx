@@ -55,8 +55,8 @@ const ProductDetails = () => {
 
         const { data } = await response.data;
 
-        console.log(data.product);
-        setProduct(data.product);
+        // console.log(data.product);
+        setProduct(data?.product);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -71,7 +71,7 @@ const ProductDetails = () => {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-8 px-6 lg:px-8">
+    <div className="w-[360px] mx-auto my-4">
       <div className="bg-white shadow-lg rounded-lg overflow-hidden">
         <div
           className="bg-cover bg-center h-64"

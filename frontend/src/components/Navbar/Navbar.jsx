@@ -8,31 +8,35 @@ import { useDispatch, useSelector } from "react-redux";
 import { setlogOut, setsearchData } from "../../Redux/userSlice";
 import { useNavigate } from "react-router-dom";
 import { logoutUser } from "../../Api/UserApi";
+import { API_URI } from "../../utils/constant";
 // import axios from "axios";
 function Navbar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const isAuth = useSelector((state) => state.isAuth);
   const token = useSelector((state) => state.accessToken);
   console.log("user", user, "token", token);
+  console.log(isAuth);
   const [query, setquery] = useState("");
+  console.log(window.location.origin);
+  console.log(API_URI);
   console.log(query);
   const handleSearch = async () => {
     try {
-      const data = await fetchGetAllProduct(query);
-      console.log(data.productData);
+      const { data } = await fetchGetAllProduct(query);
+      console.log(data?.productData);
       dispatch(setsearchData({ product: data?.productData }));
-      setquery("");
     } catch (error) {
       // Handle error (show error message, etc.)
       console.error("Error fetching products:", error);
-      setquery('')
+    } finally {
+      setquery("");
     }
   };
 
   const handleLogout = async () => {
     try {
-      // console.log(token)
       const responce = await logoutUser();
 
       if (!responce) {
@@ -40,12 +44,13 @@ function Navbar() {
       }
       dispatch(setlogOut());
 
-      navigate("/product");
       // Handle successful logout
       console.log("User logged out successfully:", responce);
     } catch (error) {
       console.error("Error logging out:", error);
       // Handle logout error
+    } finally {
+      navigate("/product");
     }
   };
 
@@ -54,7 +59,7 @@ function Navbar() {
   }, []);
 
   return (
-    <section className="flex sticky z-50 top-0 w-full justify-between bg-yellow-100 items-center py-2 px-4">
+    <section className="flex fixed z-50 bg-white shadow-sm bg-opacity-90 top-0 w-full  justify-between  items-center py-2 px-4">
       <h1
         className="font-bold text-3xl text-orange-400 cursor-pointer"
         onClick={() => {
@@ -91,7 +96,7 @@ function Navbar() {
           ></path>
         </svg>
       </div>
-      <div className="flex items-center gap-7">
+      <div className="flex items-center gap-7 ">
         <label className="popup">
           <input type="checkbox" />
           <div tabindex="0" class="burger">
@@ -105,7 +110,7 @@ function Navbar() {
               <path d="M12 2c2.757 0 5 2.243 5 5.001 0 2.756-2.243 5-5 5s-5-2.244-5-5c0-2.758 2.243-5.001 5-5.001zm0-2c-3.866 0-7 3.134-7 7.001 0 3.865 3.134 7 7 7s7-3.135 7-7c0-3.867-3.134-7.001-7-7.001zm6.369 13.353c-.497.498-1.057.931-1.658 1.302 2.872 1.874 4.378 5.083 4.972 7.346h-19.387c.572-2.29 2.058-5.503 4.973-7.358-.603-.374-1.162-.811-1.658-1.312-4.258 3.072-5.611 8.506-5.611 10.669h24c0-2.142-1.44-7.557-5.631-10.647z"></path>
             </svg>
           </div>
-          <nav className="popup-window">
+          <nav className="popup-window shadow-md">
             <ul>
               {!user && !token ? (
                 <>
@@ -187,7 +192,7 @@ function Navbar() {
           ) : (
             <MdShoppingCartCheckout
               onClick={() => {
-                navigate("/cart");
+                isAuth ? navigate("/cart") : navigate("/login");
               }}
               size={35}
               color="blue"
