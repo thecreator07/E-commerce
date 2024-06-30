@@ -24,13 +24,13 @@ function Navbar() {
   console.log(query);
   const handleSearch = async () => {
     try {
-      const { data } = await fetchGetAllProduct(query);
+      const { data } = await fetchGetAllProduct( query );
       console.log(data?.productData);
       dispatch(setsearchData({ product: data?.productData }));
+      setquery("");
     } catch (error) {
       // Handle error (show error message, etc.)
       console.error("Error fetching products:", error);
-    } finally {
       setquery("");
     }
   };

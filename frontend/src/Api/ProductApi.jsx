@@ -92,7 +92,7 @@ export const fetchDeleteProduct = async (productId) => {
 //   }
 // };
 
-export const fetchGetAllProduct = async ({query}) => {
+export const fetchGetAllProduct = async (query) => {
   try {
     let url = `${API_URI}/api/v1/products`;
     if (query) url += `?query=${query}`;
