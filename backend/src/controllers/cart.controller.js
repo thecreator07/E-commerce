@@ -9,7 +9,7 @@ import { Product } from "../models/product.models.js";
 const AddCartItem = asyncHandler(async (req, res) => {
     const { productId } = req.params;
     const { quantity } = req.body;
-    console.log("quantity",quantity)
+    console.log("quantity", quantity)
     // Validate productId
     if (!productId || !mongoose.Types.ObjectId.isValid(productId)) {
         throw new ApiError(400, "Invalid ObjectId");
@@ -68,7 +68,7 @@ const AddCartItem = asyncHandler(async (req, res) => {
     // Save the updated cart
     await userCart.save();
 
-    return res.status(200).json(new ApiResponse(200, {userCart}, "Item(s) added to the cart successfully"));
+    return res.status(200).json(new ApiResponse(200, { userCart }, "Item(s) added to the cart successfully"));
 });
 
 const RemoveCartItem = asyncHandler(async (req, res) => {
@@ -106,12 +106,12 @@ const GetUsetCart = asyncHandler(async (req, res) => {
 
     // Extract cartItems from the populated cart object
     const cartItems = cart.cartItems.map(item => ({
-        id:item.product._id,
+        id: item.product?._id,
         product: item.product,
         quantity: item.quantity,
         price: item.price,
-        productName: item.product.name,
-        productDescription: item.product.description,
+        productName: item.product?.name,
+        productDescription: item.product?.description,
         // Add more fields as needed
     }));
 

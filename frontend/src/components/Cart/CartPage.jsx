@@ -5,11 +5,13 @@ import { useSelector } from "react-redux";
 import { fetchGetUserCart } from "../../Api/CartApi";
 import { useDispatch } from "react-redux";
 import { setcart } from "../../Redux/userSlice";
+import Button from "@mui/material/Button";
 
 const CartPage = () => {
   const dispatch = useDispatch();
   const Cart = useSelector((state) => state.cart);
-  // const totalItems = useSelector((state) => state.totalItems);
+  const totalItems = useSelector((state) => state.totalItems);
+  const totalPrice = useSelector((state) => state.totalPrice);
   const handleCart = async () => {
     try {
       const result = await fetchGetUserCart();
@@ -30,7 +32,7 @@ const CartPage = () => {
 
   useEffect(() => {
     handleCart();
-  }, [Cart]);
+  }, []);
   // console.log("Cart", Cart);
   // console.log("totalItems", totalItems);
 
@@ -49,7 +51,10 @@ const CartPage = () => {
           />
         ))}
 
-        <footer className="w-full bg-slate-200 fixed bottom-0 h-10"></footer>
+      <footer className="w-full shadow-md relative bottom-0 flex p-3 flex-col gap-5 md:flex-row bottom-0">
+        <Button variant="text" disabled sx={{color:"black", backgroundColor:"blue", boxShadow:"inherit",}} >Total: ${totalPrice} </Button>{" "}
+        <Button variant="text" disabled disa sx={{color:"white", backgroundColor:"blue"}}>Proceed to Buy ({totalItems} items)</Button>
+      </footer>
     </div>
   );
 };

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+
 import { API_URI } from "../../utils/constant";
 import axios from "axios";
 import { useSelector } from "react-redux";
-
+import { Button } from "@mui/material";
 const ProductDetails = () => {
   const params = useParams();
   const navigate = useNavigate();
@@ -30,12 +31,11 @@ const ProductDetails = () => {
       if (!responce) {
         setError(responce);
       }
-
-      navigate("/product");
     } catch (error) {
       setError(error.response?.data?.message || "Something went wrong"); // Handle error
     } finally {
       setLoading(false);
+      navigate("/");
     }
   };
 
@@ -75,7 +75,7 @@ const ProductDetails = () => {
       <div className="bg-white shadow-lg rounded-lg overflow-hidden">
         <div
           className="bg-cover bg-center h-64"
-          style={{ backgroundImage: `url(${product.image})` }}
+          style={{ backgroundImage: `url(${product?.image})` }}
         ></div>
         <div className="p-4">
           <h3 className="font-semibold text-lg">{product.name}</h3>
@@ -92,7 +92,7 @@ const ProductDetails = () => {
           </div>
           <div
             className={`mt-2 ${
-              user?.role === "admin" ? "flex justify-between" : ""
+              user?.role === "admin" ? "flex justify-between" : "flex justify-between"
             }`}
           >
             {user?.role === "admin" ? (
@@ -103,7 +103,8 @@ const ProductDetails = () => {
                 >
                   Remove
                 </button>
-                <Link to={`/admin/updateProduct/${productId}`}
+                <Link
+                  to={`/admin/updateProduct/${productId}`}
                   // onClick={handleupdate}
                   className="p-2.5 bg-blue-700 rounded-3xl text-white font-semibold"
                 >
@@ -111,9 +112,14 @@ const ProductDetails = () => {
                 </Link>
               </>
             ) : (
-              <button className="p-2.5 bg-blue-700 rounded-3xl text-white font-semibold">
-                Order Now
-              </button>
+              <>
+                <Button className="p-2.5 bg-blue-700 rounded-3xl text-white font-semibold">
+                  Order Now
+                </Button>
+                <Button className="p-2.5 bg-blue-700 rounded-3xl text-white font-semibold">
+                  Add to cart
+                </Button>
+              </>
             )}
           </div>
           {/* <div className="mt-4 flex items-center">

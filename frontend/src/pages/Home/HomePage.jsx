@@ -16,7 +16,7 @@ function HomePage() {
   const dispatch = useDispatch();
 
   return (
-    <div className="min-w-screen mt-16">
+    <div className="w-screen mt-16">
       <div className="w-full h-full flex flex-col  items-center">
         <Navbar />
         <Routes>

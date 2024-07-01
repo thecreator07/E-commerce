@@ -7,7 +7,7 @@ const ProductPage = () => {
   const product = useSelector((state) => state.product);
  
   return (
-    <div className="mt-4 lg:mx-20 mx-2 flex gap-5 flex-wrap">
+    <div className="mt-4 w-full h-full lg:mx-20 mx-2 flex items-center justify-center gap-5 flex-wrap">
       {/* map this */}
       {product &&
         product.map((item) => (

@@ -40,7 +40,7 @@ const AddProductForm = () => {
       );
 
       console.log("Product added successfully:", response.data);
-      navigate("/product");
+      navigate("/");
       // Handle success (show message, redirect, etc.)
     } catch (error) {
       console.error("Add Product Error:", error);

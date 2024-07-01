@@ -63,34 +63,7 @@ export const fetchDeleteProduct = async (productId) => {
   }
 };
 
-// export const fetchGetAllProduct = async (query) => {
-//   try {
-//     let url = `${API_URI}/api/v1/products`;
-// if (query) {
-//   url += `?query=${query}`;
-// }
 
-//     const { data } = await axios.get(
-//       url,
-//       // {data},
-//       {
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         credentials: "include",
-//         withCredentials: true,
-//       }
-//     );
-//     // const data = (await response).data;
-
-//     // const product = data?.productData;
-//     console.log(data);
-//     return data.data;
-//   } catch (error) {
-//     console.error("Error fetching data:", error);
-//     throw error;
-//   }
-// };
 
 export const fetchGetAllProduct = async (query) => {
   try {
